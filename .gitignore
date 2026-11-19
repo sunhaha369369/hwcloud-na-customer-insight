@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Local config (contains real data source paths / credentials)
+config.json
+config.*.json
+!config.example.json
+
+# Run artifacts
+insight-output/
+demo-data/
+output/
+analysis/history/
+*.log
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,65 @@
+{
+  "_comment": "复制为 config.json 后按需修改。所有 _comment / _ 开头的键会被忽略。相对路径以本配置文件所在目录为基准。",
+
+  "brand": {
+    "company": "华为云",
+    "portfolio": "NA 客户",
+    "report_title": "客户洞察报告与机会点分析"
+  },
+
+  "as_of": "2026-06",
+  "window_months": 12,
+
+  "input_dir": "./demo-data",
+  "sources": {
+    "_example_db": {
+      "type": "sqlite",
+      "path": "./data/billing.db",
+      "query": "SELECT account_id, month, product_line, amount FROM billing WHERE month >= '2025-07'"
+    },
+    "_example_api": {
+      "type": "api",
+      "url": "https://crm.example.com/openapi/accounts",
+      "headers": {"X-Tenant": "na-sales"},
+      "token_env": "CRM_TOKEN",
+      "records_path": "data.items",
+      "pagination": {"param": "page", "size_param": "pageSize", "size": 200},
+      "max_pages": 20
+    },
+    "_example_excel": {
+      "type": "xlsx",
+      "path": "./data/客户反馈.xlsx",
+      "sheet": "反馈明细"
+    }
+  },
+
+  "field_overrides": {
+    "_comment": "源数据列名无法自动识别时，在这里手工指定：表名 -> {原列名: 标准字段}",
+    "transactions": {
+      "本月实际收入(元)": "amount"
+    }
+  },
+
+  "tier_percentile": {"S": 0.85, "A": 0.65, "B": 0.35},
+  "tier_amount": {},
+
+  "growth_fast": 0.15,
+  "growth_decline": -0.1,
+  "activity_cut": {"high": 0.7, "mid": 0.45, "low": 0.2},
+
+  "renewal_urgent_days": 90,
+  "renewal_watch_days": 180,
+
+  "pain_weights": {"breadth": 0.3, "intensity": 0.2, "exposure": 0.25, "severity": 0.15, "actionability": 0.1},
+  "pain_priority_cut": {"P0": 70, "P1": 50},
+
+  "opp_weights": {"cross_sell": 0.3, "up_sell": 0.3, "white_space": 0.2, "advocacy": 0.2},
+  "opp_defend_penalty": 0.4,
+  "opp_priority_cut": {"A": 70, "B": 50},
+  "win_rate": 0.3,
+  "top_opps": 30,
+
+  "alert_z_threshold": 2.0,
+
+  "output": {"dir": "./insight-output"}
+}

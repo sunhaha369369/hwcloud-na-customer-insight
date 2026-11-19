@@ -1,0 +1,13 @@
+# Normalize line endings; keep source and docs as LF in the repo
+* text=auto eol=lf
+
+*.py   text eol=lf
+*.md   text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+
+*.png  binary
+*.jpg  binary
+*.xlsx binary
+*.zip  binary
+*.pdf  binary
